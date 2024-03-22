@@ -8,6 +8,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
 import "./App.css";
+import Cart from "./components/Cart";
 
 const productsArr = [
   {
@@ -44,6 +45,12 @@ const productsArr = [
 ];
 
 function App() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const toggleModal = () => {
+    setIsModalOpen(!isModalOpen);
+  };
+
   return (
     <>
       <Navbar expand="lg" className="bg-body-tertiary">
@@ -55,7 +62,8 @@ function App() {
               <Nav.Link href="#home">Home</Nav.Link>
               <Nav.Link href="#link">Store</Nav.Link>
               <Nav.Link href="#link">About</Nav.Link>
-              <Button>Cart</Button>
+              <Nav.Link></Nav.Link>
+              <Button onClick={toggleModal}>Open Cart</Button>
             </Nav>
           </Navbar.Collapse>
         </Container>
@@ -95,6 +103,7 @@ function App() {
       <Container>
         <h4>The Generics</h4>
       </Container>
+      <Cart isOpen={isModalOpen} onClose={toggleModal} />
     </>
   );
 }
