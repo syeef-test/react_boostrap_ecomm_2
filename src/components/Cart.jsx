@@ -2,6 +2,38 @@ import React from "react";
 import { Modal, Button } from "react-bootstrap";
 import ReactDOM from "react-dom";
 
+const cartElements = [
+  {
+    title: "Colors",
+
+    price: 100,
+
+    imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%201.png",
+
+    quantity: 2,
+  },
+
+  {
+    title: "Black and white Colors",
+
+    price: 50,
+
+    imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%202.png",
+
+    quantity: 3,
+  },
+
+  {
+    title: "Yellow and Black Colors",
+
+    price: 70,
+
+    imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%203.png",
+
+    quantity: 1,
+  },
+];
+
 function Cart({ isOpen, onClose }) {
   if (!isOpen) return null;
 
@@ -21,7 +53,14 @@ function Cart({ isOpen, onClose }) {
         </Modal.Header>
 
         <Modal.Body>
-          <h1>Cart Items</h1>
+          <h1>
+            {cartElements.map((item) => (
+              <div key={item.title}>
+                <h3>{item.title}</h3>
+                <h3>{item.price}</h3>
+              </div>
+            ))}
+          </h1>
         </Modal.Body>
 
         <Modal.Footer>
