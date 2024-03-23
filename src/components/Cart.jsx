@@ -1,32 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Modal, Button } from "react-bootstrap";
 import ReactDOM from "react-dom";
-
-const cartElements = [
-  {
-    title: "Colors",
-    price: 100,
-    imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%201.png",
-    quantity: 2,
-  },
-
-  {
-    title: "Black and white Colors",
-    price: 50,
-    imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%202.png",
-    quantity: 3,
-  },
-
-  {
-    title: "Yellow and Black Colors",
-    price: 70,
-    imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%203.png",
-    quantity: 1,
-  },
-];
+import CartContext from "../store/cart-context";
 
 function Cart({ isOpen, onClose }) {
   if (!isOpen) return null;
+
+  const cartContext = useContext(CartContext);
+
+  const handleRemoveItem = (item) => {
+    cartContext.removeItem(item);
+  };
 
   return ReactDOM.createPortal(
     <>
@@ -44,7 +28,7 @@ function Cart({ isOpen, onClose }) {
         </Modal.Header>
 
         <Modal.Body>
-          {cartElements.map((item) => (
+          {cartContext.items.map((item) => (
             <div
               key={item.title}
               style={{
@@ -57,12 +41,10 @@ function Cart({ isOpen, onClose }) {
               <div>
                 <h3>{item.title}</h3>
                 <p>Price: ${item.price}</p>
+                <p>Quantity: {item.quantity}</p>
               </div>
               <div>
-                <Button
-                  variant="danger"
-                  onClick={() => handleRemoveItem(item.title)}
-                >
+                <Button variant="danger" onClick={() => handleRemoveItem(item)}>
                   Remove
                 </Button>
               </div>

@@ -5,9 +5,12 @@ import "./index.css";
 // import "../node_modules/react-bootstrap/dist/react-bootstrap";
 // import "../node_modules/bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import CartProvider from "./store/CartProvider.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <App />
+    <CartProvider>
+      <App />
+    </CartProvider>
   </React.StrictMode>
 );
