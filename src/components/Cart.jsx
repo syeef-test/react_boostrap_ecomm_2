@@ -17,7 +17,7 @@ function Cart({ isOpen, onClose }) {
       <Modal.Dialog
         style={{
           position: "fixed",
-          top: 0,
+          top: 80,
           right: 0,
           bottom: 0,
           width: "300px",

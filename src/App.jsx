@@ -1,25 +1,27 @@
 import { useContext, useState } from "react";
-import { BrowserRouter, Route } from "react-router-dom"; // Import BrowserRouter and Route from react-router-dom
-import CartContext from "./store/cart-context";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
+import About from "./pages/About";
+import Header from "./components/Header";
+import Cart from "./components/Cart";
 
 function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const cartContext = useContext(CartContext);
-
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
   };
 
-  const addItemHandler = (item) => {
-    cartContext.addItem(item, 1);
-  };
-
   return (
-    <BrowserRouter>
-      <h1>Hello</h1>
-      <Route path="/" element={<Home />} />
-    </BrowserRouter>
+    <>
+      <BrowserRouter>
+        <Header toggleModal={toggleModal} />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+        </Routes>
+        <Cart isOpen={isModalOpen} onClose={toggleModal} />
+      </BrowserRouter>
+    </>
   );
 }
 
