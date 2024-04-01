@@ -6,11 +6,14 @@ import "./index.css";
 // import "../node_modules/bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import CartProvider from "./store/CartProvider.jsx";
+import { BrowserRouter } from "react-router-dom";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <CartProvider>
-      <App />
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
     </CartProvider>
   </React.StrictMode>
 );

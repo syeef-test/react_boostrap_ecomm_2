@@ -23,12 +23,15 @@ const Header = ({ toggleModal }) => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <NavLink to="/" exact style={navLinkStyle}>
+            <NavLink to="/" style={navLinkStyle}>
               Home
             </NavLink>
 
             <NavLink to="/about" style={navLinkStyle}>
               About
+            </NavLink>
+            <NavLink to="/contactus" style={navLinkStyle}>
+              Contact Us
             </NavLink>
           </Nav>
 
