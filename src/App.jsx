@@ -5,6 +5,8 @@ import About from "./pages/About";
 import Header from "./components/Header";
 import Cart from "./components/Cart";
 import ContactUs from "./pages/ContactUs";
+import Products from "./pages/Products";
+import ProductDetails from "./pages/ProductDetails";
 
 function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -25,6 +27,12 @@ function App() {
         </Route>
         <Route path="/contactus">
           <ContactUs />
+        </Route>
+        <Route path="/products" exact>
+          <Products />
+        </Route>
+        <Route path="/products/:productId">
+          <ProductDetails />
         </Route>
       </Switch>
 
