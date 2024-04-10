@@ -31,12 +31,14 @@ function Signin() {
         }
       );
 
-      console.log(response);
+      //console.log(response);
 
       if (response.status === 200) {
         authCtx.login(response.data.idToken);
+        console.log(response.data.idToken);
         alert("Sign In Succesful");
-        localStorage.setItem("email", email);
+        //localStorage.setItem("email", email);
+
         history.replace("/products");
       }
 

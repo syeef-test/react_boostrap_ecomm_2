@@ -13,7 +13,7 @@ export const AuthContextProvider = (props) => {
   const userIsLoggedIn = !!token;
 
   const loginHandler = (token) => {
-    console.log("token", token);
+    console.log("auth-context called", token);
 
     setToken(token);
     localStorage.setItem("token", token);
@@ -30,6 +30,10 @@ export const AuthContextProvider = (props) => {
     login: loginHandler,
     logout: logoutHandler,
   };
+
+  useEffect(() => {
+    console.log("auth_context:", token);
+  }, [token]);
 
   return (
     <AuthContext.Provider value={contextValue}>

@@ -8,9 +8,14 @@ import ContactUs from "./pages/ContactUs";
 import Products from "./pages/Products";
 import ProductDetails from "./pages/ProductDetails";
 import Signin from "./pages/Signin";
+import AuthContext from "./store/auth-context";
 
 function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const authCtx = useContext(AuthContext);
+  const isLoggedIn = authCtx.isLoggedIn;
+
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
   };
@@ -29,13 +34,18 @@ function App() {
         <Route path="/contactus">
           <ContactUs />
         </Route>
-        <Route path="/products" exact>
-          <Products />
-        </Route>
-        <Route path="/products/:productId">
-          <ProductDetails />
-        </Route>
-        <Route path="/signin">
+        {isLoggedIn && (
+          <>
+            <Route path="/products" exact>
+              <Products />
+            </Route>
+            <Route path="/products/:productId">
+              <ProductDetails />
+            </Route>
+          </>
+        )}
+
+        <Route path="">
           <Signin />
         </Route>
       </Switch>
