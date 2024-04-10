@@ -37,7 +37,7 @@ function Signin() {
         authCtx.login(response.data.idToken);
         console.log(response.data.idToken);
         alert("Sign In Succesful");
-        //localStorage.setItem("email", email);
+        localStorage.setItem("email", email);
 
         history.replace("/products");
       }

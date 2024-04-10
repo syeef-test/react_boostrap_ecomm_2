@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
+import CartContext from "../store/cart-context";
 
 const productsArr = [
   {
@@ -34,6 +35,17 @@ const productsArr = [
 ];
 
 function Products() {
+  const cartContext = useContext(CartContext);
+
+  const addToCartHandler = async (newItem) => {
+    try {
+      cartContext.addItem(newItem, 1);
+      //cartContext.getCartItem();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <>
       <section>

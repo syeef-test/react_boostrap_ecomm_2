@@ -64,9 +64,11 @@ const Header = ({ toggleModal }) => {
             </>
           )}
 
-          <Button variant="outline-dark" onClick={toggleModal}>
-            Cart: {totalQuantity}
-          </Button>
+          {isLoggedIn && (
+            <Button variant="outline-dark" onClick={toggleModal}>
+              Cart: {totalQuantity}
+            </Button>
+          )}
         </Navbar.Collapse>
       </Container>
     </Navbar>
