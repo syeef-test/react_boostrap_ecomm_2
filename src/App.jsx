@@ -1,14 +1,16 @@
-import { useContext, useState } from "react";
+import { useContext, useState, lazy, Suspense } from "react";
 import { Route, Switch } from "react-router-dom";
-import Home from "./pages/Home";
-import About from "./pages/About";
-import Header from "./components/Header";
-import Cart from "./components/Cart";
-import ContactUs from "./pages/ContactUs";
-import Products from "./pages/Products";
-import ProductDetails from "./pages/ProductDetails";
-import Signin from "./pages/Signin";
+
 import AuthContext from "./store/auth-context";
+
+const Home = lazy(() => import("./pages/Home"));
+const AboutPage = lazy(() => import("./pages/About"));
+const Header = lazy(() => import("./components/Header"));
+const Cart = lazy(() => import("./components/Cart"));
+const ContactUs = lazy(() => import("./pages/ContactUs"));
+const Products = lazy(() => import("./pages/Products"));
+const ProductDetails = lazy(() => import("./pages/ProductDetails"));
+const Signin = lazy(() => import("./pages/Signin"));
 
 function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -26,31 +28,44 @@ function App() {
 
       <Switch>
         <Route exact path="/">
-          <Home />
+          <Suspense fallback={<p>Loading....</p>}>
+            <Home />
+          </Suspense>
         </Route>
         <Route path="/about">
-          <About />
+          <Suspense fallback={<p>Loading....</p>}>
+            <AboutPage />
+          </Suspense>
         </Route>
         <Route path="/contactus">
-          <ContactUs />
+          <Suspense fallback={<p>Loading....</p>}>
+            <ContactUs />
+          </Suspense>
         </Route>
         {isLoggedIn && (
           <>
-            <Route path="/products" exact>
-              <Products />
-            </Route>
-            <Route path="/products/:productId">
-              <ProductDetails />
-            </Route>
+            <Suspense fallback={<p>Loading....</p>}>
+              <Route path="/products" exact>
+                <Products />
+              </Route>
+            </Suspense>
+            <Suspense fallback={<p>Loading....</p>}>
+              <Route path="/products/:productId">
+                <ProductDetails />
+              </Route>
+            </Suspense>
           </>
         )}
 
         <Route path="">
-          <Signin />
+          <Suspense fallback={<p>Loading....</p>}>
+            <Signin />
+          </Suspense>
         </Route>
       </Switch>
-
-      <Cart isOpen={isModalOpen} onClose={toggleModal} />
+      <Suspense fallback={<p>Loading....</p>}>
+        <Cart isOpen={isModalOpen} onClose={toggleModal} />
+      </Suspense>
     </>
   );
 }
