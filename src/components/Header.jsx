@@ -36,6 +36,9 @@ const Header = ({ toggleModal }) => {
             <NavLink to="/products" style={navLinkStyle}>
               Products
             </NavLink>
+            <NavLink to="/signin" style={navLinkStyle}>
+              Signin
+            </NavLink>
           </Nav>
 
           <Button variant="outline-dark" onClick={toggleModal}>

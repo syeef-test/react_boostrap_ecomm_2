@@ -7,6 +7,7 @@ import Cart from "./components/Cart";
 import ContactUs from "./pages/ContactUs";
 import Products from "./pages/Products";
 import ProductDetails from "./pages/ProductDetails";
+import Signin from "./pages/Signin";
 
 function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -33,6 +34,9 @@ function App() {
         </Route>
         <Route path="/products/:productId">
           <ProductDetails />
+        </Route>
+        <Route path="/signin">
+          <Signin />
         </Route>
       </Switch>
 
