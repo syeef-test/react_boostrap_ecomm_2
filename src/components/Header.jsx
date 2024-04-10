@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Navbar, Container, Nav, Button } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import CartContext from "../store/cart-context";
@@ -10,6 +10,15 @@ const Header = ({ toggleModal }) => {
   const authCtx = useContext(AuthContext);
   const isLoggedIn = authCtx.isLoggedIn;
   const history = useHistory();
+
+  useEffect(() => {
+    const fetchCart = () => {
+      if (isLoggedIn) {
+        cartContext.getCartItem();
+      }
+    };
+    fetchCart();
+  }, [isLoggedIn]);
 
   const totalQuantity = cartContext.items.reduce((curQuantity, item) => {
     return curQuantity + Number(item.quantity);
